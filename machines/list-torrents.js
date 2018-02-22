@@ -62,6 +62,7 @@ module.exports = {
           eta: info[10],
           torrentUrl: info[19],
           status: info[21],
+          dlspeed: info[9],
           downloadDir: info[26],
           paused: info[21].indexOf("Stopped") > -1 ? 1 : 0
         };
