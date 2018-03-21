@@ -38,6 +38,12 @@ module.exports = {
   },
 
   fn: function(inputs, exits) {
+    var toDateTime = function(secs) {
+      var t = new Date(0); // Epoch
+      t.setSeconds(secs);
+      return t;
+    };
+
     var Machine = require('machine');
     var createClient = Machine.build(require('./create-client'));
     var client = createClient({
@@ -62,6 +68,7 @@ module.exports = {
           eta: info[10],
           torrentUrl: info[19],
           status: info[21],
+          finishedAt: info[21].indexOf("Finished") > -1 ? toDateTime(info[24]) : null,
           dlspeed: info[9],
           downloadDir: info[26],
           paused: info[21].indexOf("Stopped") > -1 ? 1 : 0
