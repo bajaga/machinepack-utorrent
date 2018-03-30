@@ -70,7 +70,7 @@ module.exports = {
           status: info[21],
           finishedAt: info[21].indexOf("Finished") > -1 ? toDateTime(info[24]) : null,
           dlspeed: info[9],
-          downloadDir: info[26],
+          path: info[26].substring(0, info[26].lastIndexOf("\\")),
           paused: info[21].indexOf("Stopped") > -1 ? 1 : 0
         };
       });
